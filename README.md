@@ -1,11 +1,11 @@
-# semafor
+# @gwash3189/semafor
 
 A lightweight, zero-dependency TypeScript library for bounding concurrent work using keyed semaphores, acquisition wait timeouts, and execution time limits.
 
 ## Installation
 
 ```bash
-npm install semafor
+npm install @gwash3189/semafor
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install semafor
 Acquire a lock for a given key and immediately execute a callback:
 
 ```ts
-import { semafor } from 'semafor'
+import { semafor } from '@gwash3189/semafor'
 
 // wait: how long (in ms) we will wait to acquire a lock
 // workers: the number of concurrent runs of the callback that can be going at any one point
@@ -44,7 +44,7 @@ await release()
 Create a reusable handle for a given key and configuration:
 
 ```ts
-import { semaphore } from 'semafor'
+import { semaphore } from '@gwash3189/semafor'
 
 const { release, aquire, acquire } = semaphore('key', {
   wait: 5_000,
