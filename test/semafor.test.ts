@@ -275,12 +275,12 @@ describe('semafor', () => {
   })
 
   describe('.semaphore', () => {
-    describe('when using the handle API with aquire', () => {
+    describe('when using the handle API with acquire', () => {
       it('acquires the lock and executes the callback', async () => {
-        const { aquire } = semaphore('handle-aquire', { wait: 1000, workers: 1, limit: 1000 })
+        const { acquire } = semaphore('handle-acquire', { wait: 1000, workers: 1, limit: 1000 })
         let executed = false
 
-        await aquire(async (release) => {
+        await acquire(async (release) => {
           try {
             executed = true
           } finally {
@@ -292,19 +292,19 @@ describe('semafor', () => {
       })
 
       it('forces release of held locks via the outer release method', async () => {
-        const { release, aquire } = semaphore('handle-force-release', {
+        const { release, acquire } = semaphore('handle-force-release', {
           wait: 500,
           workers: 1,
         })
         let secondAcquired = false
 
-        await aquire(async () => {
+        await acquire(async () => {
           // Do not release inside callback
         })
 
         await release()
 
-        await aquire(async (innerRelease) => {
+        await acquire(async (innerRelease) => {
           try {
             secondAcquired = true
           } finally {
@@ -315,7 +315,7 @@ describe('semafor', () => {
         expect(secondAcquired).toBe(true)
       })
 
-      it('forces release of all locks on the key when called before handle aquire', async () => {
+      it('forces release of all locks on the key when called before handle acquire', async () => {
         const key = 'external-force-release'
         let acquiredAfterForce = false
 

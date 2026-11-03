@@ -1,6 +1,6 @@
 {
   "name": "@gwash3189/semafor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightweight TypeScript library for bounding concurrent work with semaphores, timeouts, and execution limits.",
   "license": "MIT",
   "author": "gwash3189",

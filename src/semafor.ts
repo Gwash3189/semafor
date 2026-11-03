@@ -31,7 +31,6 @@ export interface SemaforResult<T = unknown> {
 export interface SemaphoreHandle {
   release: ReleaseFn
   acquire: <T = unknown>(callback: SemaforCallback<T>) => Promise<SemaforResult<T>>
-  aquire: <T = unknown>(callback: SemaforCallback<T>) => Promise<SemaforResult<T>>
 }
 
 interface WaitQueueEntry {
@@ -251,7 +250,6 @@ export function semafor<T>(
   return {
     release,
     acquire,
-    aquire: acquire,
   }
 }
 

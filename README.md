@@ -46,13 +46,13 @@ Create a reusable handle for a given key and configuration:
 ```ts
 import { semaphore } from '@gwash3189/semafor'
 
-const { release, aquire, acquire } = semaphore('key', {
+const { release, acquire } = semaphore('key', {
   wait: 5_000,
   workers: 35,
   limit: 2_500,
 })
 
-await aquire(async (release) => {
+await acquire(async (release) => {
   try {
     // ... do work
   } finally {
