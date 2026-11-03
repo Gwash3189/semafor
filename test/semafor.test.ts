@@ -16,18 +16,17 @@ describe('semafor', () => {
     describe('when invoked with a callback directly', () => {
       it('executes the callback and returns the result', async () => {
         const key = 'direct-exec'
-        const { result, release } = await semafor(
+        const { result } = await semafor(
           key,
           { wait: 1000, workers: 1, limit: 1000 },
-          async (innerRelease) => {
+          async (release) => {
             try {
               return 'completed'
             } finally {
-              await innerRelease()
+              await release()
             }
           }
         )
-        await release()
 
         expect(result).toBe('completed')
       })
